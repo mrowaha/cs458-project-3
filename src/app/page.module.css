@@ -1,0 +1,40 @@
+.login-form__container {
+  border: 1px solid #efefef;
+  border-radius: 5px;
+  width: 400px;
+  height: 50%;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  padding: 0.75rem;
+  gap: 10px;
+  box-shadow: 0 4px 10px rgba(211, 211, 211, 0.5);
+}
+
+.login-form__container > h1 {
+  align-self: center;
+}
+
+.login-form__container > footer {
+  margin-top: auto;
+  font-size: 0.5em;
+}
+
+.login-form__divider {
+  height: 1px;
+  width: 80%;
+  background: #dadada;
+  align-self: center;
+  position: relative;
+}
+
+.login-form__divider::before {
+  content: "or";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  background-color: white;
+  transform: translateX(-50%);
+  color: #dadada;
+  padding-inline: 0.25rem;
+}

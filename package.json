@@ -1,0 +1,31 @@
+{
+  "name": "cs458-project",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "devextreme-react": "^24.2.3",
+    "lodash": "^4.17.21",
+    "mobx": "^6.13.6",
+    "mobx-keystone": "^1.11.1",
+    "mobx-react": "^9.2.0",
+    "next": "15.1.7",
+    "next-auth": "^4.24.11",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "selenium": "^2.20.0",
+    "selenium-webdriver": "^4.28.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "typescript": "^5",
+    "webdriver-manager": "^12.1.9"
+  }
+}
