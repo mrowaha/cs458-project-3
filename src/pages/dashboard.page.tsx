@@ -23,7 +23,7 @@ export const DashboardPage = () => {
         <CardContent className="space-y-4">
           <Button
             className="w-full bg-accent-base hover:bg-accent-dark"
-            id="login-form__action:reset"
+            id="dashboard__action:to-ai-survey"
             onClick={() => navigate("/ai-survey")}
           >
             <p>AI Survey</p>
@@ -31,7 +31,7 @@ export const DashboardPage = () => {
 
           <Button
             className="w-full bg-accent-base hover:bg-accent-dark"
-            id="login-form__action:reset"
+            id="dashboard__action:logout"
             onClick={logout}
           >
             <p>Logout</p>

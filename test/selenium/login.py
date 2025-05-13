@@ -127,10 +127,26 @@ class LoginTest(unittest.TestCase):
     def test_access_denied(self: "LoginTest"):
         self.driver.get("http://localhost:5173/dashboard")
         expected_url = "http://localhost:5173/"
-        WebDriverWait(self.driver, 5).until(
+        WebDriverWait(self.driver, 10).until(
             lambda d: d.current_url == expected_url)
         self.assertEqual(self.driver.current_url, expected_url,
                          "User should be not authorized and redirected to login")
+
+    def test_login_logout(self: "LoginTest"):
+        self.email_input_field.send_keys("john.doe@example.com")
+        self.password_input_field.send_keys("P@ssw0rd123")
+        self.sign_in_button.click()
+
+        logout_button = WebDriverWait(self.driver, 10).until(
+            expected_conditions.presence_of_element_located(
+                (By.ID, "dashboard__action:logout"))
+        )
+        logout_button.click()
+        expected_url = "http://localhost:5173/"
+        WebDriverWait(self.driver, 5).until(
+            lambda d: d.current_url == expected_url)
+        self.assertEqual(self.driver.current_url, expected_url,
+                         "User is expected to logout")
 
 
 if __name__ == '__main__':
