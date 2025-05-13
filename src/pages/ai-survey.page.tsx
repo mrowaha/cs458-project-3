@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useForm, Controller } from "react-hook-form";
 import { DateTime } from "luxon";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router";
 
 const aiModels = ["ChatGPT", "Bard", "Claude", "Copilot"] as const;
 type AiModel = (typeof aiModels)[number];
@@ -68,9 +69,16 @@ export default function SurveyWebForm() {
       setValue("selectedModels", [...current, model]);
     }
   };
+  const navigate = useNavigate()
+
+  const navigateToDashboard = () => {
+        navigate('/dashboard');
+    };
 
   const onSubmit = (data: SurveyFormData) => {
     console.log("Survey Data:", data);
+    navigateToDashboard();
+    
   };
 
   return (
@@ -320,6 +328,7 @@ export default function SurveyWebForm() {
                 type="submit"
                 className="w-full bg-accent-base hover:bg-accent-dark"
                 id="aisurvey-form__action:submit"
+                
               >
                 <p>Submit</p>
               </Button>

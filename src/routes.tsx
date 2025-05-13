@@ -15,7 +15,6 @@ export const SvqRoutes = () => {
       <Route path="/dashboard" element={<DashboardPage />} />
       <Route path="/ai-survey" element={<AiSurveyFormPage />} />
       <Route path="/create-survey" element={<CreateSurveyPage />} />
-      <Route path="/dashboard" element={<SurveyEditor />} />
     </Routes>
   );
 };
