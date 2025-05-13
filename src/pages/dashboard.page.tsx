@@ -29,6 +29,16 @@ export const DashboardPage = () => {
             <p>AI Survey</p>
           </Button>
 
+
+          <Button
+            className="w-full bg-accent-base hover:bg-accent-dark"
+            id="dashboard__action:to-ai-survey"
+            onClick={() => navigate("/create-survey")}
+          >
+            <p>Create Your Own Survey</p>
+          </Button>
+
+
           <Button
             className="w-full bg-accent-base hover:bg-accent-dark"
             id="dashboard__action:logout"
