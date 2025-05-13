@@ -84,6 +84,7 @@ export default function SurveyWebForm() {
 
         <CardContent>
           <form
+            id="ai-survey__form"
             className="max-w-2xl mx-auto p-6 rounded-lg text-accent-contrast overflow-scroll max-h-156"
             onSubmit={handleSubmit(onSubmit)}
           >
@@ -102,12 +103,16 @@ export default function SurveyWebForm() {
                 <div className="mb-4">
                   <label className="block font-medium mb-1">Full Name</label>
                   <input
+                    id="ai-survey__field:full-name"
                     type="text"
                     className="w-full p-2 border rounded"
                     {...field}
                   />
                   {formState.errors.name && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p
+                      id="ai-survey__error:full-name"
+                      className="text-red-600 text-sm mt-1"
+                    >
                       {formState.errors.name.message}
                     </p>
                   )}
@@ -136,12 +141,16 @@ export default function SurveyWebForm() {
                     Birth Date (dd-MM-yyyy)
                   </label>
                   <input
+                    id="ai-survey__field:birthdate"
                     type="text"
                     className="w-full p-2 border rounded"
                     {...field}
                   />
                   {formState.errors.birthDate && (
-                    <p className="text-red-600 text-sm mt-1">
+                    <p
+                      id="ai-survey__error:birthdate"
+                      className="text-red-600 text-sm mt-1"
+                    >
                       {formState.errors.birthDate.message}
                     </p>
                   )}
@@ -238,6 +247,7 @@ export default function SurveyWebForm() {
               {aiModels.map((model) => (
                 <label key={model} className="block">
                   <input
+                    id={`ai-survey__field:model-${model.toLowerCase()}`}
                     type="checkbox"
                     checked={selectedModels.includes(model)}
                     onChange={() => toggleModel(model)}
@@ -268,12 +278,16 @@ export default function SurveyWebForm() {
                         Defects/Cons of {model}
                       </label>
                       <input
+                        id={`ai-survey__field:modeldefect-${key}`}
                         type="text"
                         className="w-full p-2 border rounded"
                         {...field}
                       />
                       {formState.errors.modelCons?.[model] && (
-                        <p className="text-red-600 text-sm mt-1">
+                        <p
+                          id={`ai-survey__error:modeldefect-${key}`}
+                          className="text-red-600 text-sm mt-1"
+                        >
                           {formState.errors.modelCons[model]?.message}
                         </p>
                       )}
@@ -305,13 +319,13 @@ export default function SurveyWebForm() {
               <Button
                 type="submit"
                 className="w-full bg-accent-base hover:bg-accent-dark"
-                id="login-form__action:submit"
+                id="aisurvey-form__action:submit"
               >
                 <p>Submit</p>
               </Button>
               <Button
                 className="w-full bg-accent-base hover:bg-accent-dark"
-                id="login-form__action:reset"
+                id="aisurvey-form__action:reset"
                 onClick={() => reset()}
               >
                 <p>Reset</p>
