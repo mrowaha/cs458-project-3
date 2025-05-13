@@ -1,7 +1,6 @@
 import { useLocation } from "react-router";
 import { useForm } from "react-hook-form";
-import { useCallback } from "react";
-import { showToast } from "@/components/utils/toast";
+import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,6 +10,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import users from "@/data.json";
 
 interface ILoginForm {
   email: string;
@@ -19,7 +19,7 @@ interface ILoginForm {
 
 export const LoginPage = () => {
   const location = useLocation();
-
+  const [loginError, setLoginError] = useState<string | null>(null);
   const {
     register,
     handleSubmit,
@@ -33,9 +33,18 @@ export const LoginPage = () => {
   });
 
   const onSubmit = useCallback(async (data: ILoginForm) => {
-    showToast("Logged In", "success");
-    localStorage.setItem("proj3-user", `${data.email}:${data.password}`);
-    window.location.replace("/dashboard");
+    const user = users.find((_user) => _user.email === data.email);
+    setLoginError(null);
+    if (user) {
+      if (data.password !== user.password) {
+        setLoginError("Incorrect password. Please try again.");
+      } else {
+        localStorage.setItem("proj3-user", `${data.email}:${data.password}`);
+        window.location.replace("/dashboard");
+      }
+    } else {
+      setLoginError("No such user found with that email.");
+    }
   }, []);
 
   return (
@@ -48,6 +57,15 @@ export const LoginPage = () => {
         </CardHeader>
 
         <CardContent>
+          {loginError && (
+            <div
+              className="mb-4 rounded-md bg-red-500/10 p-3 text-sm text-red-400 border border-red-500"
+              id="login-form__error:unauthorized"
+            >
+              {loginError}
+            </div>
+          )}
+
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="space-y-2">
               <label
@@ -58,7 +76,7 @@ export const LoginPage = () => {
               </label>
               <div>
                 <Input
-                  id="login__field:email"
+                  id="login-form__field:email"
                   type="text"
                   placeholder="name@example.com"
                   className={`bg-zinc-800 text-accent-contrast border-zinc-700 ${

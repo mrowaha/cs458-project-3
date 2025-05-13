@@ -32,7 +32,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
 
   const logout = useCallback(() => {
     localStorage.removeItem("proj3-user");
-    window.location.replace("/auth/login");
+    window.location.replace("/");
   }, []);
 
   return (
@@ -60,8 +60,7 @@ export const AuthProvider = (props: PropsWithChildren) => {
         {(result) => {
           if (!result) {
             // @ts-expect-error
-            if (!unprotected_routes.includes(location.pathname))
-              navigate("/auth/login");
+            if (!unprotected_routes.includes(location.pathname)) navigate("/");
           }
           return props.children;
         }}
