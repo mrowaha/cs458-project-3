@@ -213,7 +213,7 @@ const ConditionalLogicInput = ({
     question: Question;
     allQuestions: Question[];
     onChange: (id: string, updates: Partial<Question>) => void;
-    questionIndex: number; // For more stable test IDs if needed, or use question.id
+    questionIndex: number;
 }) => {
     const [selectedQuestion, setSelectedQuestion] = useState<string>(
         question.condition?.questionId || ''
@@ -257,7 +257,7 @@ const ConditionalLogicInput = ({
         }
     };
 
-    const currentQuestionTestIdPart = question.id; // Or use questionIndex if IDs are too complex for test selectors
+    const currentQuestionTestIdPart = question.id;
 
     return (
         <div className="space-y-4 p-4 bg-gray-100 rounded-md border border-gray-300">
@@ -535,9 +535,6 @@ const SurveyEditor = () => {
         setDraggedQuestionId(null);
     };
     
-    // Placeholder for where a survey title error message might be displayed
-    // You would need to implement the logic to show/hide this based on validation
-    // For example: {surveyTitleError && <p data-testid="survey-title-error">{surveyTitleError}</p>}
 
     return (
         <div className="min-h-screen bg-gray-200 p-8">
@@ -561,9 +558,7 @@ const SurveyEditor = () => {
                     className="mt-4 mx-auto w-full max-w-md bg-white border-gray-300 text-gray-900"
                     data-testid="survey-title-input"
                 />
-                {/* Example of where a title error could be: */}
-                {/* {survey.title.length === 0 && <p data-testid="survey-title-error-empty">Title is required</p>} */}
-                {/* {survey.title.length > 30 && <p data-testid="survey-title-error-long">Title must be at most 30 characters</p>} */}
+
 
 
                 <div className="space-y-4">
@@ -581,8 +576,8 @@ const SurveyEditor = () => {
                                 onDragOver={handleDragOver}
                                 onDrop={(e) => handleDrop(e, index)}
                                 className={cn("space-y-4", draggedQuestionId === question.id && "opacity-50")}
-                                data-testid={`question-block-${question.id}`} // More specific
-                                // or data-testid="question-block" if you prefer to find by index
+                                data-testid={`question-block-${question.id}`}
+
                             >
                                 <QuestionHeader
                                     question={question}
@@ -642,14 +637,11 @@ const SurveyEditor = () => {
                 </div>
                 <div className='mt-8 flex justify-center'>
                     <Button
-                      data-testid="save-survey-button"
-                      variant='default'
-                      size='lg'
-                      className="bg-blue-600 hover:bg-blue-700 text-white"
-                      onClick={() => {
-                        alert('Survey saved successfully!');
-                        navigateToDashboard();
-                      }}
+                        data-testid="save-survey-button"
+                        variant='default'
+                        size='lg'
+                        className="bg-blue-600 hover:bg-blue-700 text-white"
+
                     >
                         Save Survey
                     </Button>

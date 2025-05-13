@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException 
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.chrome.options import Options as ChromeOptions
-# from selenium.webdriver.common.action_chains import ActionChains # Not used in this revision but can be useful
+# from selenium.webdriver.common.action_chains import ActionChains
 
 class SurveyCreatorTest(unittest.TestCase):
 
@@ -103,7 +103,7 @@ class SurveyCreatorTest(unittest.TestCase):
         question_types_to_test = {
             "multipleChoice": {
                 "button_testid": "add-question-multipleChoice-button",
-                "expected_element_testid_pattern": "question-{id}-option-0-input" # Check for first option input
+                "expected_element_testid_pattern": "question-{id}-option-0-input"
             },
             "ratingScale": {
                 "button_testid": "add-question-ratingScale-button",
@@ -111,7 +111,7 @@ class SurveyCreatorTest(unittest.TestCase):
             },
             "openEnded": {
                 "button_testid": "add-question-openEnded-button",
-                "expected_element_testid_pattern": "question-{id}-title-input" # Open ended just has a title
+                "expected_element_testid_pattern": "question-{id}-title-input"
             },
             "dropdown": {
                 "button_testid": "add-question-dropdown-button",
@@ -133,7 +133,7 @@ class SurveyCreatorTest(unittest.TestCase):
 
 
     def test_can_write_in_question_boxes(self):
-        """Test writing in question title and option inputs."""
+
         mc_button_testid = "add-question-multipleChoice-button"
         q_id, question_block = self._add_question_and_get_id(mc_button_testid)
 
@@ -149,7 +149,7 @@ class SurveyCreatorTest(unittest.TestCase):
         self.assertEqual(option_0_input.get_attribute("value"), "Red")
 
     def test_save_survey_button_presence(self):
-        """Check if the save survey button is present."""
+
         save_button = self.find_element(By.CSS_SELECTOR, "[data-testid='save-survey-button']")
         self.assertTrue(save_button.is_displayed())
 
@@ -170,7 +170,7 @@ class SurveyCreatorTest(unittest.TestCase):
         back_button.click()
 
         try:
-            # Wait for the URL to change to the expected redirect URL (the root path)
+            # Wait for the URL to change to the expected redirect URL
             self.wait.until(EC.url_to_be(expected_redirect_url_for_unauthenticated))
 
             current_url_normalized = self.driver.current_url.rstrip('/')
@@ -194,7 +194,7 @@ class SurveyCreatorTest(unittest.TestCase):
 
     def test_required_button_functionality(self):
         """Check if the required button can be toggled for a question."""
-        oe_button_testid = "add-question-openEnded-button" # Add any question type
+        oe_button_testid = "add-question-openEnded-button"
         q_id, question_block = self._add_question_and_get_id(oe_button_testid)
 
         required_checkbox_selector = f"[data-testid='question-{q_id}-required-checkbox']"
